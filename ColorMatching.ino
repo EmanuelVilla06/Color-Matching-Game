@@ -1,5 +1,4 @@
 // C++ code
-//
 void setup()
 {
   pinMode(13, INPUT);
@@ -33,6 +32,7 @@ int ledsPos[] = {0, 1, 2, 3, 4, 5};
 int colorsChosen[3];
 int colorx[6];
 
+//Lights up the LED associated with the button pressed by the player
 void playerInput(int a){
   if (ledsPos[a] == 0 || ledsPos[a] == 1) {
     digitalWrite(colors[0],1);
@@ -52,11 +52,10 @@ void playerInput(int a){
 }
 
 void loop() { 
-  
+
+  //Randomizes the order of the colors
   if (digitalRead(A2) == 1) {
-    
     e = 1;
-    //shuffles colors array
     const int questionCountColors = sizeof colors / sizeof colors[0];
     for (int j = 0; j < questionCountColors; j++) {
       long x = random(0, questionCountColors);
@@ -72,7 +71,7 @@ void loop() {
     colorx[4] = colors[2];
     colorx[5] = colors[2];
     
-    //shuffles leds array
+    //Randomizes the order of the LEDs that display the colors
     const int questionCountLeds = sizeof ledsPos / sizeof ledsPos[0];
     for (int i = 0; i < questionCountLeds; i++) {
       long n = random(0, questionCountLeds);
@@ -90,7 +89,7 @@ void loop() {
     
     for (int k = 0; k < 200; k++){
       
-      //shows first pair
+      //Displays the first color pair
       digitalWrite(leds[0],0);
       digitalWrite(leds[1],1);
       digitalWrite(leds[2],1);
@@ -122,7 +121,7 @@ void loop() {
       digitalWrite(9,0);
       digitalWrite(10,0);
   
-      //shows second pair
+      //Displays the second color pair
       digitalWrite(leds[0],1);
       digitalWrite(leds[1],1);
       digitalWrite(leds[2],0);
@@ -154,7 +153,7 @@ void loop() {
       digitalWrite(9,0);
       digitalWrite(10,0);
   
-      //shows third pair
+      //Displays the third color pair
       digitalWrite(leds[0],1);
       digitalWrite(leds[1],1);
       digitalWrite(leds[2],1);
@@ -189,7 +188,7 @@ void loop() {
     }
   }
   
-  //player's input 
+  //Player's input 
   if (digitalRead(13) == 1) {
     
     digitalWrite(7,0);
@@ -296,8 +295,8 @@ void loop() {
             y = 0; 
           }
         } 
+        //Player lost
         else {
-          //game lost signal
           for (int i = 0; i < 8; i++){
             digitalWrite(8,1);
             delay(350);
@@ -309,7 +308,7 @@ void loop() {
       }
       colorindex = -1;
     }
-    //game won signal
+    //Player won
     if (matchnum == 3){ 
       for (int i = 0; i < 8; i++){
         digitalWrite(10,1);
